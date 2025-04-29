@@ -1,15 +1,6 @@
-﻿### Main Source of this code is used from this website
-* https://dev.to/zeyu2001/build-a-chatroom-app-with-python-44fa
+﻿import pygame
 
-### Changes
-* Remove thinker
-
-```python
-
-
-import pygame
-
-from SyncGame.Ball import Ball
+from Ball import Ball
 
 pygame.init()
 
@@ -24,7 +15,6 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Pong")
 clock = pygame.time.Clock()
 FPS = 30
-
 
 class Striker:
     def __init__(self, posx, posy, width, height, speed, color):
@@ -57,19 +47,19 @@ class Striker:
     def getRect(self):
         return self.geekRect
 
-
 def main():
+    is_host = True
     running = True
     geek1 = Striker(20, 0, 10, 100, 10, GREEN)
     geek2 = Striker(WIDTH - 30, 0, 10, 100, 10, GREEN)
-    ball = Ball(pygame, screen, WIDTH // 2, HEIGHT // 2, 7, 7, WHITE, HEIGHT, WIDTH)
+    ball = Ball(pygame,screen,WIDTH // 2, HEIGHT // 2, 7, 7, WHITE,HEIGHT,WIDTH)
     listOfGeeks = [geek1, geek2]
     geek1Score, geek2Score = 0, 0
     geek1YFac, geek2YFac = 0, 0
 
     while running:
         screen.fill(BLACK)
-
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -94,6 +84,7 @@ def main():
 
         geek1.update(geek1YFac)
         geek2.update(geek2YFac)
+        
         point = ball.update()
 
         if point == -1:
@@ -110,13 +101,11 @@ def main():
 
         geek1.displayScore("Geek_1 : ", geek1Score, 100, 20, WHITE)
         geek2.displayScore("Geek_2 : ", geek2Score, WIDTH - 100, 20, WHITE)
-
+        
+            
         pygame.display.update()
         clock.tick(FPS)
-
 
 if __name__ == "__main__":
     main()
     pygame.quit()
-
-```
