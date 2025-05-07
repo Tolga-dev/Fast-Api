@@ -1,4 +1,5 @@
-﻿import socket
+﻿import os
+import socket
 import threading
 
 connections = []
@@ -34,7 +35,6 @@ class Client(threading.Thread):
             if data:
                 try:
                     data = data.decode("utf-8")
-                    # print("ID " + str(self.id) + ": " + str(data))
 
                     parts = data.split(";")
                     main_info = parts[0]
@@ -68,8 +68,17 @@ def newConnections(socket):
         print("New connection at ID " + str(connections[len(connections) - 1]))
         total_connections += 1
 
+def exit(server):
+    while True:
+        ipt = input('')
+        if ipt == 'q':
+            print("Closing all connections...")
+            for connection in server.connections:
+                connection.sc.close()
+            print("Shutting down the server...")
+            os._exit(0)
 
-def main():
+if __name__ == '__main__':
     host = "127.0.0.1"
     port = 5000
 
@@ -79,5 +88,3 @@ def main():
 
     newConnectionsThread = threading.Thread(target=newConnections, args=(sock,))
     newConnectionsThread.start()
-
-main()

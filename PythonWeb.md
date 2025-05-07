@@ -78,6 +78,24 @@
   * request handling
   * manager url routing
 
+
+## Simple Web Applications
+* Understand http
+  * web servers are based on the http protocols
+  * stateless
+  * request response
+  * client server 
+  * get post, status codes, headers, and message format
+* Handle Socket 
+  * socket programming
+  * open, close, manage connections
+* Request Handler
+  * build a request handler that can parse http requests and route them to functions and return responses
+* Manage URL
+  * Server must parse urls from requests and map them to resources 
+  
+
+
 ```python
 
 import http.server
@@ -182,6 +200,69 @@ if __name__ == "__main__":
     app.run()
 ```
 curl.exe -X POST -d "param1=value1&param2=value2" http://127.0.0.1:5000
+ 
 
-# Web Development and Frameworks
+## Flask Framework introduction
+* flask
+  * lightweight web application framework
+  * micro framework 
+  * simple
+  * minimalist
+  * provides essential components
+  * extensible
+  * allowing developers to add features as needed
+* flask keys
+  * flexible
+  * jinja2 templating
+    * presentation layer from business logic separation
+  * built in development server
+  * extensions
+    * authentication
+    * database integrations
+    * restful api
+  * werkzeug
+    * toolkit, solid foundation for handling http request and responses
 
+## A typical web application using a web framework
+* flask security
+  * authentication
+  * role
+  * permission management
+  * password hashing
+* pydantic or mashmallow 
+  * can validate user data
+* Sql alchemy
+  * python orm
+    * object relational mapping lib
+* django
+  * authentication 
+  * authorization
+
+## Flask Routing
+* display tasks
+* add new tasks
+* set tasks as completed
+* remove index task
+* filter task
+
+# curl.exe -X POST -H "Content-Type: application/json" -d "{\"title\": \"Learn Flask\"}" http://127.0.0.1:5000
+# curl ‐X GET http://127.0.0.1:5000
+
+## Flask Blueprints
+* organize and structure application by grouping 
+  * related routes
+  * templates static files
+  * other code
+* where are blue print used
+  * structure applications into reusable components
+  * organizing code into separete modules
+  * enable separation of concerns by grouping related functionalities
+* how to create
+  * name
+  * import name
+  * url prefix
+    * modularizing app routes
+    * helpful multiple blueprints
+    * 
+* Task manager Application
+  

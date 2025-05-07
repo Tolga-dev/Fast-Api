@@ -9,7 +9,7 @@
 
 import pygame
 
-from SyncGame.Ball import Ball
+from SyncGame.Entities.Ball import Ball
 
 pygame.init()
 

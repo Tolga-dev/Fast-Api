@@ -2,7 +2,8 @@
 import socket
 import threading
 import sys
-from Ball import Ball
+from Entities.Ball import Ball
+from Entities.Player import Player
 
 pygame.init()
 
@@ -19,7 +20,7 @@ clock = pygame.time.Clock()
 FPS = 30
 is_host = True
 
-class Player_Network:
+class PlayerNetwork:
     def __init__(self):
         global is_host
         self.host = "127.0.0.1"
@@ -35,10 +36,10 @@ class Player_Network:
             input("Press enter to quit")
             sys.exit(0)
 
-        receiveThread = threading.Thread(target=self.receive, args=(self.sock, True))
-        receiveThread.start()
+        receive_thread = threading.Thread(target=self.receive, args=(self.sock, True))
+        receive_thread.start()
         
-        message = input("Select A or B")
+        message = input("Select Host(A) or Client(B) | if you press wrong, restart script:")
         if message != 'A':
             is_host = False
         
@@ -55,14 +56,6 @@ class Player_Network:
                 self.player_a_position = list(map(int, parts[0].split(",")))
                 self.player_b_position = list(map(int, parts[1].split(",")))
                 self.ball_position = list(map(int, parts[2].split(",")))
-                
-                # print()
-                # print(f"A: {self.player_a_position}, B: {self.player_b_position}, Ball: {self.ball_position}")
-                # 
-                # if is_host:
-                #     print(f"Your Position A: {player_a_position}")
-                # else:
-                #     print(f"Your Position B: {player_b_position}")
 
             except Exception as e:
                 print("Disconnected from server:", e)
@@ -78,46 +71,14 @@ class Player_Network:
             payload += f";Ball:{ball_pos[0]},{ball_pos[1]}"
         self.sock.sendall(payload.encode())
 
-
-class Player:
-    def __init__(self, posx, posy, width, height, speed, color):
-        self.posx = posx
-        self.posy = posy
-        self.width = width
-        self.height = height
-        self.speed = speed
-        self.color = color
-        self.geekRect = pygame.Rect(posx, posy, width, height)
-        self.geek = pygame.draw.rect(screen, self.color, self.geekRect)
-
-    def display(self):
-        self.geek = pygame.draw.rect(screen, self.color, self.geekRect)
-
-    def update(self, yFac):
-        self.posy = self.posy + self.speed * yFac
-        if self.posy <= 0:
-            self.posy = 0
-        elif self.posy + self.height >= HEIGHT:
-            self.posy = HEIGHT - self.height
-        self.geekRect = (self.posx, self.posy, self.width, self.height)
-        
-    def set_pos(self, posY):
-        self.posy = posY
-        self.geekRect = (self.posx, self.posy, self.width, self.height)
-
-    def getRect(self):
-        return self.geekRect
-    def getPos(self):
-        return self.posx, self.posy
-
 def main():
  
     running = True
-    player1 = Player(20, 0, 10, 100, 10, GREEN)
-    player2 = Player(WIDTH - 30, 0, 10, 100, 10, GREEN)
+    player1 = Player(20, 0, 10, 100, 10, GREEN, pygame, screen, HEIGHT)
+    player2 = Player(WIDTH - 30, 0, 10, 100, 10, GREEN, pygame, screen, HEIGHT)
     ball = Ball(pygame,screen,WIDTH // 2, HEIGHT // 2, 7, 7, WHITE,HEIGHT,WIDTH)
     
-    player_network = Player_Network()
+    player_network = PlayerNetwork()
     if is_host:
         player_network.send(player1.getPos(), ball.get_pos())
     else:
