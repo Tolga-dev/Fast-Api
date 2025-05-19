@@ -68,16 +68,6 @@ def newConnections(socket):
         print("New connection at ID " + str(connections[len(connections) - 1]))
         total_connections += 1
 
-def exit(server):
-    while True:
-        ipt = input('')
-        if ipt == 'q':
-            print("Closing all connections...")
-            for connection in server.connections:
-                connection.sc.close()
-            print("Shutting down the server...")
-            os._exit(0)
-
 if __name__ == '__main__':
     host = "127.0.0.1"
     port = 5000

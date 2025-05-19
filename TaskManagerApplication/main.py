@@ -1,8 +1,8 @@
-﻿import views
-import auth
-from app import app
+﻿import auth 
+import views
+from app_init import create_app
 
+app = create_app(views,auth)
 
-app.register_blueprint(auth.bp)
-app.register_blueprint(views.bp)
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
