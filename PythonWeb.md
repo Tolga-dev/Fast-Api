@@ -760,7 +760,7 @@ if __name__ == "__main__":
 </form>
 ```
 *  builtin-filters, custom-filters, builtin-tests, custom-tests, and global functions
- 
+1 
 # Rest
 ## Rest software architectural style
 * definition and reason to use
@@ -1089,3 +1089,13 @@ pip install -binary
 
 
 
+This includes BI tools and dashboard-building platforms like
+
+Superset
+Grafana
+Google Looker Studio
+As well as data science tools like
+
+Pandas
+SQLAlchemy
+psql
