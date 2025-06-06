@@ -31,6 +31,6 @@ async def root_hello_world():
     return {"message": "Hello World"}
 
 
-if __name__ == "__main__":
-    uvicorn.run("E2:app", host="127.0.0.1", port=8000, reload=True)
+# if __name__ == "__main__":
+#     uvicorn.run("E2:app", host="127.0.0.1", port=8000, reload=True)
 
