@@ -1,9 +1,17 @@
 ﻿class Settings:
-    database_hostname = "localhost"
-    database_port = 8000
-    database_password = "Postgre"
-    database_name = "postgres"  
-    database_username = "postgres"
+    # database_hostname = "localhost"
+    # database_port = 8000
+    # database_password = "Postgre"
+    # database_name = "postgres"  
+    # database_username = "postgres"
+    # secret_key = "HELLO_HANDSOME"
+    # algorithm = "HS256"
+    # access_token_expire_minutes = 10
+    database_hostname = "cduf3or326qj7m.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com"
+    database_port = 5432
+    database_password = "p28004bea8d526572b1f2763409c631d546c05c660e01718d666185409deafe85"
+    database_name = "dbvf0de3dief0s"  
+    database_username = "u8c46dc3hsms54"
     secret_key = "HELLO_HANDSOME"
     algorithm = "HS256"
     access_token_expire_minutes = 10
